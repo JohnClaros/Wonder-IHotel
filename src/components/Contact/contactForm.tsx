@@ -42,16 +42,21 @@ const ContactForm = () => {
             const result = await response.json();
       
             if (response.ok) {
-              setTimeout(() => {
-                setSuccess(null);
-                router.push("/contacto?toast=¡Mensaje enviado correctamente!");
-              }, 1000);
-              setFormData({ nombre: "", email: "", mensaje: "" });
+                setSuccess("Mensaje enviado con éxito")
+                setError(null);
+                setFormData({ nombre: "", email: "", mensaje: "" });
+
+                setTimeout(() => {
+                    setSuccess(null);
+                    router.push("/contacto");
+                }, 2000);
             } else {
               setError(result.error || "Hubo un problema al enviar el mensaje.");
+              setSuccess(null);
             }
         } catch (error) {
             setError("Hubo un error al procesar la solicitud.");
+            setSuccess(null);
             console.error("Error al enviar el formulario:", error);
         }
     };
@@ -91,9 +96,8 @@ const ContactForm = () => {
                 />
             </div>
             {error && <p className={styles.error}>{error}</p>}
-            {success && <p className={styles.success}>{success}</p>}
-
             <button type="submit" className={styles.button}>Enviar</button>
+            {success && <p className={styles.success}>{success}</p>}
         </form>
     );
 };

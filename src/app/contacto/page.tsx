@@ -3,34 +3,11 @@ import React, { useEffect, useState } from "react";
 import Layout from "@/components/Layout/Layout";
 import ContactForm from "@/components/Contact/contactForm";
 import styles from '../../styles/ContactPage.module.css';
-import { useRouter, useSearchParams } from "next/navigation";
 
 const ContactoPage: React.FC = () => {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const [ toastMessage, setToastMessage ] = useState<string | null>(null);
-
-    useEffect(() => {
-        const message = searchParams?.get("toast");
-        if (message) {
-            setToastMessage(message);
-
-            const timer = setTimeout(() => {
-                router.push("/");
-            }, 300);
-
-            return () => clearTimeout(timer);
-        }
-    }, [searchParams]);
-
     return (
         <Layout>
             <h1 className={styles.h1}>Contacto</h1>
-            {toastMessage && (
-                <div className={styles.toast}>
-                    {toastMessage}
-                </div>
-            )}
             <div className={styles.container}>
                 <div className={styles.leftColumn}>
                     <ContactForm />

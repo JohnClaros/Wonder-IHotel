@@ -50,3 +50,15 @@
 .button:hover {
     background-color: #DAA520;
 }
+
+.error {
+    color: red;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.success {
+    color: green;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
