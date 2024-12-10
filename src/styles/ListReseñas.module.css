@@ -1,0 +1,199 @@
+.testimonials {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonialsTitle {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*CARDS*/
+
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.carouselButton {
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s;
+}
+
+.carouselButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: #555;
+}
+
+/*RESEÑAS*/
+
+.testimonialList {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.testimonialItem {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonialText {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guestName {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.rating {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #f39c12;
+    margin-top: 10px;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+/*BOTON*/
+
+.divButton {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.buttReseña {
+    background-color: goldenrod;
+    color: white;
+    width: 220px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #daa250;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.buttReseña:hover {
+    background-color: #daa250;
+    border-color: goldenrod;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.buttReseña:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(250, 186, 37);
+}
+
+.testimonialItem:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+/*RESPONSIVE*/
+
+@media (max-width: 768px) {
+    .carouselContainer {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .carouselButton {
+        width: 35px;
+        height: 35px;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .testimonialList {
+        flex-direction: column;
+        gap: 20px;
+        flex-wrap: nowrap;
+    }
+
+    .testimonialItem {
+        width: 100%;
+    }
+
+    .testimonialText {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .rating {
+        font-size: 1.2rem;
+    }
+
+    .date {
+        font-size: 0.8rem;
+    }
+
+    .testimonialsTitle {
+        font-size: 1.5rem;
+    }
+
+    .buttReseña {
+        width: 180px;
+        height: 45px;
+        font-size: 14px;
+    }
+}

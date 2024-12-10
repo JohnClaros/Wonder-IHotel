@@ -1,0 +1,194 @@
+.container {
+    background-color: #f5f5f5; /* Fondo beige claro */
+    font-family: 'Times New Roman', serif;
+}
+  
+.hero {
+    background-image: url('../../public/hotelEntrada.jpg'); /* Reemplaza con tu imagen */
+    background-size: contain;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+  
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #daa250;
+    font-family: fantasy;
+}
+
+/*BUSCADOR*/
+
+.buscador {
+    margin-top: -70px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/*INTRO*/
+
+.intro {
+    margin: 40px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.introTitle {
+    font-size: 2rem;
+    color: #DAA250;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.introText {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.introText strong {
+    color: #DAA520;
+}
+
+.divButtonIntro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.buttonIntro {
+    width: 80%;
+    max-width: 300px;
+    height: 40px;
+    font-size: 1rem;
+    background-color: #DAA250;
+    color: #252022;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    text-align: center;
+}
+
+.buttonIntro:hover {
+    color: whitesmoke;
+    background-color: #bb8e3a;
+}
+
+/*CARACTERISTICAS*/
+
+.features {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.featuresTitle {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.featureList {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.featureItem {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.featureItem i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* RESEÑAS */
+
+.divResennas {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Opcional: Puedes agregar animaciones o efectos hover */
+.testimonialItem:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .intro {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .introTitle {
+        font-size: 1.5rem;
+    }
+
+    .introText {
+        font-size: 0.9rem;
+    }
+
+    .featuresTitle {
+        font-size: 1.5rem;
+    }
+
+    .featureItem {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5rem;
+        padding: 0 10px;
+    }
+
+    .buttonIntro {
+        width: 100%;
+    }
+
+    .featuresTitle {
+        font-size: 1.2rem;
+    }
+
+    .featureItem {
+        font-size: 0.8rem;
+    }
+}

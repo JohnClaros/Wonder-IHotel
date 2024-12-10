@@ -1,0 +1,112 @@
+.h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #DAA250;
+    text-align: center;
+}
+
+.toast {
+    position: fixed;
+    top: 160px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #28a745;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: bold;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.cardContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap; 
+    background-color: #252022;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    color: white;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto; 
+}
+
+.imagenContainer {
+    flex: 1;
+    min-width: 200px;
+}
+
+.imagenHabitacion {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detalleContainer {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.detalleContainer p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #DAA250;
+}
+
+.span {
+    color: white;
+}
+
+.error {
+    color: red;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.divButton {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #DAA250;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.cancelButton {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.button:hover {
+    background-color: #B88F3A;
+}

@@ -1,0 +1,34 @@
+.h2 {
+    text-align: center;
+    margin-top: 10px;
+    color: goldenrod;
+}
+
+.p {
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.propias {
+    margin-top: 20px;
+}
+
+.terceros {
+    margin-top: 20px;
+}
+
+.sociales {
+    margin-top: 20px;
+}
+
+.ul {
+    margin-top: 10px;
+}
+
+.url{
+    color: #17a2b8;
+}
+
+.h4 {
+    margin-top: 20px;
+}

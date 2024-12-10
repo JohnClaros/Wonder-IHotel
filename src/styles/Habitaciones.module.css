@@ -1,0 +1,84 @@
+.h1 {
+    text-align: center;
+    color: #DAA250;
+    margin-top: 20px;
+}
+
+.contenedor1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 20px;
+    font-size: 18px;
+}
+
+.decripcion {
+    flex: 1;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.serviciosDestacados {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+  
+.serviciosTitle {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.serviciosTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+.serviciosTable th,
+.serviciosTable td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+  
+.serviciosTable th {
+    background-color: #f1f1f1;
+}
+
+.serviciosTable td {
+    color: #daa250;
+}
+  
+.serviciosTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+.serviciosTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+/*ROOMCARD*/
+
+.roomsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.card {
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .contenedor1 {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

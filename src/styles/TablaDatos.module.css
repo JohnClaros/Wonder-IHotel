@@ -1,0 +1,88 @@
+.container {
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #005bb5;
+}
+
+.loading .error {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: red;
+}
+
+.tablewrapper {
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 20px;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+.table th {
+    background-color: #f4f4f4;
+}
+
+@media (max-width: 768px) {
+    .buttons {
+        flex-direction: column;
+    }
+
+    .button {
+        margin: 5px 0;
+    }
+
+    .table th, .table td {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table {
+        font-size: 0.75rem;
+    }
+
+    .table th, .table td {
+        padding: 5px;
+    }
+}
