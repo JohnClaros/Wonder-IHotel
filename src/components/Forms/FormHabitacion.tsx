@@ -90,6 +90,7 @@ const FormHabitacion = () => {
                       value={formData.fecha_entrada}
                       onChange={handleChange}
                       required
+                      className="date-input"
                     />
                 </div>
                 <div className={styles.campo}>
@@ -100,6 +101,7 @@ const FormHabitacion = () => {
                       value={formData.fecha_salida}
                       onChange={handleChange}
                       required
+                      className="date-input"
                     />
                 </div>
                 <div className={styles.campo}>

@@ -57,3 +57,9 @@ footer {
   padding: 10px 20px;
   text-align: center;
 }
+
+.date-input::-webkit-calendar-picker-indicator {
+  color: black;
+  filter: invert(30%) sepia(80%) saturate(300%) hue-rotate(0deg) brightness(95%);
+  cursor: pointer;
+}

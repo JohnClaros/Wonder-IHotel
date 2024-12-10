@@ -11,6 +11,7 @@
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
+    color: black;
 }
 
 /*CARDS*/
@@ -85,6 +86,7 @@
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
+    color: black;
 }
 
 .rating {
