@@ -41,7 +41,6 @@ const ListResennas = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            handleNext();
         }, interval_time);
 
         return () => clearInterval(interval);
@@ -74,7 +73,7 @@ const ListResennas = () => {
                     {visibleResennas.length > 0 ? (
                         visibleResennas.map((resenna) => (
                             <div key={resenna.id} className={styles.testimonialItem}>
-                                <p className={styles.testimonialText}>"{resenna.mensaje}"</p>
+                                <p className={styles.testimonialText}>&quot;{resenna.mensaje}&quot;</p>
                                 <p className={styles.guestName}>{resenna.nombre}</p>
                                 <div className={styles.rating}>
                                     {"⭐".repeat(resenna.rating)}

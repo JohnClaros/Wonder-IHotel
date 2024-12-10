@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react"
+import React, { useState, Suspense } from "react"
 import Layout from "@/components/Layout/Layout"
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "@/styles/ReservasPage.module.css";
@@ -150,4 +150,10 @@ const ReservasPage = () => {
     );
 };
 
-export default ReservasPage;
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ReservasPage />
+        </Suspense>
+    )
+}

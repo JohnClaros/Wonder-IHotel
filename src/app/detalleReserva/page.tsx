@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Layout from "@/components/Layout/Layout";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "@/styles/DetalleReservaPage.module.css";
 import { toast }from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 interface ReservaDetalle {
     id: number;
@@ -69,7 +70,7 @@ const DetalleReservaPage = () => {
         };
 
         fetchDetalleReserva();
-    }, [habitacion_id, fecha_entrada, fecha_salida]);
+    }, [habitacion_id, fecha_entrada, fecha_salida, precioFinal]);
 
     const handlePagoClick = () => {
         router.push(`/datosBancarios?habitacion_id=${habitacion_id}&fecha_entrada=${fecha_entrada}&fecha_salida=${fecha_salida}`);
@@ -135,11 +136,13 @@ const DetalleReservaPage = () => {
                     {success}
                 </div>
             )}
-            
+
             {reservaDetalle ? (
                 <div className={styles.cardContainer}>
                     <div className={styles.imagenContainer}>
-                        <img
+                        <Image 
+                            width={1200}
+                            height={1200}
                             src={imagenHabitacion}
                             alt={`Imagen de la habitación ${reservaDetalle.habitacion_nombre}`}
                             className={styles.imagenHabitacion}
@@ -174,4 +177,10 @@ const DetalleReservaPage = () => {
     );
 };
 
-export default DetalleReservaPage;
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <DetalleReservaPage />
+        </Suspense>
+    );
+}

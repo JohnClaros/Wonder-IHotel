@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from "react";
+import React, {useState, Suspense} from "react";
 import Layout from "@/components/Layout/Layout";
 import styles from "@/styles/DatosBancarios.module.css";
 import {useRouter, useSearchParams} from "next/navigation";
@@ -157,4 +157,10 @@ const DatosBancariosPage = () => {
     );
 };
 
-export default DatosBancariosPage;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DatosBancariosPage />
+    </Suspense>
+  )
+}
