@@ -55,7 +55,6 @@ const Reseñas = () => {
                 <h1 className={styles.h1}>Reseñas</h1>
                 <p className={styles.p}>(donde el cliente no tiene la razón, a no ser que nos dé 5 stars)</p>
 
-                {/*TOAST NOTIFICATION*/}
                 {success && (
                     <div className={styles.toast}>
                         {success}
