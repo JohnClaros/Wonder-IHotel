@@ -15,8 +15,6 @@ const ContactoPage: React.FC = () => {
         if (message) {
             setToastMessage(message);
 
-            router.replace("/contacto"); 
-
             const timer = setTimeout(() => {
                 router.push("/");
             }, 300);
