@@ -9,7 +9,7 @@ interface Resenna {
     nombre: string;
     mensaje: string;
     rating: number;
-    fecha: string;
+    fecha_creacion: string;
 };
 
 const ListResennas = () => {
@@ -79,10 +79,10 @@ const ListResennas = () => {
                                     {"⭐".repeat(resenna.rating)}
                                 </div>
                                 <p className={styles.date}>
-                                    {new Date(resenna.fecha).toLocaleDateString("es-ES" ,{
-                                        day: "2-digit",
-                                        month: "long",
+                                    {new Date(resenna.fecha_creacion).toLocaleDateString("es-ES", {
                                         year: "numeric",
+                                        month: "long",
+                                        day: "numeric"
                                     })}
                                 </p>
                             </div>

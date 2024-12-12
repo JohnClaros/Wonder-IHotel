@@ -1,13 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { open } from "sqlite";
-import sqlite3 from "sqlite3";
 
-const openDb = async () => {
-    return open({
-        filename: './src/db/hotel.db',
-        driver: sqlite3.Database,
-    });
-};
+import { db } from "@/db";
+import {contactos } from "@/db/schema"; 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
@@ -18,11 +12,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         try {
-            const db = await openDb();
-            const result = await db.run(
-                `INSERT INTO contactos (nombre, email, mensaje) VALUES (?, ?, ?)`,
-                [nombre, email, mensaje]
-            );
+            await db
+                .insert(contactos)
+                .values({
+                    nombre: nombre,
+                    email: email,
+                    mensaje: mensaje,
+                })
+                .returning()
+                .execute();
             res.status(200).json({ message: "Mensaje enviado exitosamente."});
         } catch (error) {
             console.error("Error al guardar en la bbdd:", error);

@@ -1,13 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
 
-const openDB = async () => {
-    return open({
-        filename: './src/db/hotel.db',
-        driver: sqlite3.Database,
-    });
-};
+import { db } from "@/db";
+import { clientes, habitaciones, reservas } from "@/db/schema"; 
+import { eq } from "drizzle-orm";
 
 const crearReserva = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") {
@@ -26,23 +21,36 @@ const crearReserva = async (req: NextApiRequest, res: NextApiResponse) => {
             return res.status(400).json({ error: "Faltan campos" });
         }
         try {
-            const db = await openDB();
+            const fechaRegistro = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
 
-            /*registar cliente si no existe*/
-            await db.run(
-                `INSERT OR IGNORE INTO clientes (dni, nombre, email, telefono, direccion, fecha_registro) VALUES (?, ?, ?, ?, ?, ?)`,
-                [dni, nombre, email, telefono, direccion, new Date().toLocaleDateString()]
-            );
+            await db
+                .insert(clientes)
+                .values({
+                    dni,
+                    nombre,
+                    email,
+                    telefono: telefono || null,
+                    direccion: direccion || null,
+                    fecha_registro: fechaRegistro,
+                })
 
-            /*crear reserva*/
-            await db.run(
-                `INSERT INTO reservas (cliente_dni, habitacion_id, fecha_entrada, fecha_salida, estado) VALUES (?, ?, ?, ?, ?)`,
-                [dni, habitacion_id, fecha_entrada, fecha_salida, "pendiente"]
-            );
+            await db
+                .insert(reservas)
+                .values({
+                    cliente_dni: dni,
+                    habitacion_id: parseInt(habitacion_id, 10),
+                    fecha_entrada: new Date(fecha_entrada).toISOString().split("T")[0], // YYYY-MM-DD
+                    fecha_salida: new Date(fecha_salida).toISOString().split("T")[0], // YYYY-MM-DD
+                    estado: "pendiente",
+                })
+                .returning()
+                .execute();
 
-            await db.run(
-                `UPDATE habitaciones SET disponibilidad = 1 WHERE id = ?`, [habitacion_id]
-            );
+            await db
+                .update(habitaciones)
+                .set({ disponibilidad: 1 })
+                .where(eq(habitaciones.id, parseInt(habitacion_id, 10)))
+                .execute();
 
             res.status(200).json({ message: "Reserva creada con éxito" });
         } catch (error) {

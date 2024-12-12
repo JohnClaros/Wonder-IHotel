@@ -8,7 +8,7 @@ const AvisoLegalPage: React.FC = () => {
             <div className={styles.container}>
                 <h1 className={styles.title}>Aviso Legal</h1>
                 <p className={styles.paragraph}>
-                    Este sitio web es propiedad de <strong>Wonder IHotel</strong>, con domicilio en <strong>www.WonderIHotel.com</strong>, y está destinado a proporcionar información sobre nuestros servicios y actividades.
+                    Este sitio web es propiedad de <strong>Wonder IHotel</strong>, con domicilio en <strong>www.wonder-ihotel.vercel.app</strong>, y está destinado a proporcionar información sobre nuestros servicios y actividades.
                 </p>
 
                 <h2 className={styles.subtitle}>1. Identificación del titular</h2>

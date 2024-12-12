@@ -1,13 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
-
-const openDb = async () => {
-    return open({
-        filename: "./src/db/hotel.db",
-        driver: sqlite3.Database,
-    });
-};
+import { db } from "@/db";
+import { reservas } from "@/db/schema";
+import { and, eq } from "drizzle-orm";
 
 export default async function borrarReserva(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
@@ -18,11 +12,17 @@ export default async function borrarReserva(req: NextApiRequest, res: NextApiRes
         }
 
         try {
-            const db = await openDb();
-            await db.run(
-                `DELETE FROM reservas WHERE habitacion_id = ? AND fecha_entrada = ? AND fecha_salida = ?`,
-                [habitacion_id, fecha_entrada, fecha_salida]
-            );
+            await db
+                .delete(reservas)
+                .where(
+                    and(
+                        eq(reservas.habitacion_id, habitacion_id),
+                        eq(reservas.fecha_entrada, fecha_entrada),
+                        eq(reservas.fecha_salida, fecha_salida)
+                    )
+                )
+                .returning()
+                .execute();
             res.status(200).json({ message: "Reserva eliminada con éxito." });
         } catch (error) {
             console.error("Error al borrar la reserva:", error);

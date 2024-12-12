@@ -41,3 +41,21 @@
 .iconsocial:hover {
     color: gold;
 }
+
+.copyRight {
+    font-size: 16px;
+    font-weight: 300;
+    color: whitesmoke;
+    align-items: center;
+    background-color: #DAA250;
+}
+
+.copyRight p {
+    margin: 0;
+}
+
+.copyRight p:last-child {
+    font-size: 14px;
+    margin-top: 5px;
+    color: whitesmoke;
+}

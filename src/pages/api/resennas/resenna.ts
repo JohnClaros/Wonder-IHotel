@@ -1,20 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { open } from "sqlite";
-import sqlite3 from "sqlite3";
 
-const openDb = async () => {
-    return open({
-        filename: './src/db/hotel.db',
-        driver: sqlite3.Database,
-    });
-};
+import { db } from "@/db";
+import { resennas } from "@/db/schema"; 
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const db = await openDb();
         if (req.method === 'GET') {
-            const result = await db.all(`SELECT * FROM resennas ORDER BY id DESC`);
-            res.status(200).json(result)
+            const resennasData = await db.select().from(resennas).execute();
+            res.status(200).json(resennasData)
         } else {
             res.status(405).json({ message: 'Método no permitido' })
         }

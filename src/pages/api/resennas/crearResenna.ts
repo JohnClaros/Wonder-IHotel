@@ -1,13 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
 
-const openDB = async () => {
-    return open({
-        filename: './src/db/hotel.db',
-        driver: sqlite3.Database,
-    });
-};
+import { db } from "@/db";
+import { resennas } from "@/db/schema"; 
 
 const crearResenna = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") {
@@ -22,12 +16,13 @@ const crearResenna = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         try {
-            const db = await openDB();
-            /* crear reseña */
-            await db.run(
-                `INSERT INTO resennas (nombre, mensaje, rating, fecha) VALUES (?, ?, ?, ?)`,
-                [nombre, mensaje, rating, new Date().toLocaleDateString()]
-            );
+            const fechaRegistro = new Date().toISOString().split("T")[0];
+            await db.insert(resennas).values({
+                nombre: nombre,
+                mensaje: mensaje,
+                rating: rating,
+                fecha_creacion: fechaRegistro,
+            });
             res.status(200).json({ message: "Reseña creada con éxito"});
         } catch (error) {
             console.error("Error al procesar la reseña:", error);

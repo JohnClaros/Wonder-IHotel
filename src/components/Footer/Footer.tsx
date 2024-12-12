@@ -49,6 +49,10 @@ const Footer = () => {
                     </a>
                 </div>
             </div>
+            <div className={styles.copyRight}>
+                <p>@Wonder IHotel</p>
+                <p>Todos los derechos reservados</p>
+            </div>
         </footer>
     );
 };

@@ -18,14 +18,14 @@ const TablaDatos = () => {
                     throw new Error(`Error al obtener ${dataType}: ${response.statusText}`);
                 }
                 const result = await response.json();
-                if(dataType === "clientesDatos" && result.clientes) {
-                    setData(result.clientes)
-                } else if (dataType === "habitacionesDatos" && result.habitaciones) {
-                    setData(result.habitaciones)
-                } else if (dataType === "contactosDatos" && result.contactos) {
-                    setData(result.contactos)
-                } else if (dataType === "reservasDatos" && result.reservas) {
-                    setData(result.reservas)
+                if(dataType === "clientesDatos" && result.clientesData) {
+                    setData(result.clientesData)
+                } else if (dataType === "habitacionesDatos" && result.habitacionesData) {
+                    setData(result.habitacionesData)
+                } else if (dataType === "contactosDatos" && result.contactosData) {
+                    setData(result.contactosData)
+                } else if (dataType === "reservasDatos" && result.reservasData) {
+                    setData(result.reservasData)
                 } else {
                     setData([]);
                 }

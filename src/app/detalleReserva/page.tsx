@@ -56,7 +56,7 @@ const DetalleReservaPage = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setReservaDetalle(data);
+                    setReservaDetalle(data[0]);
                 } else {
                     const errorData = await response.json();
                     setError(errorData.error || "Error al cargar los detalles de la reserva.");

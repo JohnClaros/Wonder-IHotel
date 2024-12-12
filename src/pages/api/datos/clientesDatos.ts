@@ -1,20 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sqlite3 from "sqlite3";
-import { open } from 'sqlite';
 
-const openDB = async () => {
-    return open({
-        filename: './src/db/hotel.db',
-        driver: sqlite3.Database
-    });
-}
+import { db } from "@/db";
+import { clientes } from "@/db/schema"; 
+
 
 const getClientes = async (req: NextApiRequest, res:NextApiResponse) => {
     if (req.method === 'GET') {
         try {
-            const db = await openDB();
-            const clientes = await db.all("SELECT * FROM clientes");
-            res.status(200).json({ clientes });
+            const clientesData = await db.select().from(clientes).execute();
+            res.status(200).json({ clientesData });
         } catch (error) {
             console.error("Error al obtener clientes:", error);
             res.status(500).json({error: 'Error del servidor al obtener clientes'});

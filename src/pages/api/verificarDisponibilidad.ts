@@ -1,13 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import  sqlite3 from "sqlite3";
-import { open } from "sqlite";
-
-const openDb = async () => {
-    return open({
-      filename: './src/db/hotel.db',
-      driver: sqlite3.Database,
-    });
-  };
+import { db } from "@/db";
+import { clientes, habitaciones, reservas } from "@/db/schema"; 
+import { eq, gte, and, sql, or } from "drizzle-orm";
   
   const verificarDisponibilidad = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") {
@@ -18,16 +12,18 @@ const openDb = async () => {
       }
   
       try {
-        const db = await openDb();
         //OBTENCION DE TODAS LAS HABTIACIONES QUE CUMPLEN NOMBRE Y CAPACIDAD
-        const habitacionesDisponibles = await db.all(
-          `SELECT *
-           FROM habitaciones 
-           WHERE nombre = ? 
-           AND capacidad >= ? 
-           AND disponibilidad = 1`,
-          [nombre, capacidad],
-        );
+        const habitacionesDisponibles = await db
+            .select()
+            .from(habitaciones)
+            .where(
+                and(
+                    eq(habitaciones.nombre, nombre),
+                    gte(habitaciones.capacidad, capacidad),
+                    eq(habitaciones.disponibilidad, 1)
+                )
+            )
+            .execute();
 
         if (habitacionesDisponibles.length === 0) {
           return res.status(200).json({ disponible: false, mensaje: "No hay habitaciones disponibles que cumplan con los criterios", habitaciones: [] });
@@ -37,17 +33,29 @@ const openDb = async () => {
         const habitacionesSinConflictos = [];
 
         for (const habitacion of habitacionesDisponibles) {
-          const reservasConflicto = await db.all(
-            `SELECT 1
-             FROM reservas
-             WHERE habitacion_id = ?
-             AND (
-              (fecha_entrada <= ? AND fecha_salida > ?) OR
-              (fecha_entrada < ? AND fecha_salida >= ?) OR
-              (fecha_entrada >= ? AND fecha_salida <= ?)
-             )`,
-            [habitacion.id, fecha_salida, fecha_entrada, fecha_salida, fecha_entrada, fecha_entrada, fecha_salida]
-          );
+          const reservasConflicto = await db
+                .select({ exists: sql`1` })
+                .from(reservas)
+                .where(
+                    and(
+                        eq(reservas.habitacion_id, habitacion.id),
+                        or(
+                            and(
+                                gte(fecha_entrada, reservas.fecha_entrada),
+                                sql`${fecha_entrada} < ${reservas.fecha_salida}`
+                            ),
+                            and(
+                                sql`${fecha_salida} > ${reservas.fecha_entrada}`,
+                                sql`${fecha_salida} <= ${reservas.fecha_salida}`
+                            ),
+                            and(
+                                gte(reservas.fecha_entrada, fecha_entrada),
+                                sql`${reservas.fecha_salida} <= ${fecha_salida}`
+                            )
+                        )
+                    )
+                )
+                .execute();
 
           if (reservasConflicto.length === 0) {
             habitacionesSinConflictos.push(habitacion);

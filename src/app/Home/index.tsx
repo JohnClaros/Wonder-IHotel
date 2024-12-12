@@ -63,6 +63,7 @@ const Inicio = () => {
                     <li className={styles.featureItem}>🍸 Bar en la azotea con vistas espectaculares</li>
                     <li className={styles.featureItem}>⏰ Atención 24/7 para una estancia sin preocupaciones</li>
                     <li className={styles.featureItem}>🏨 Suites de lujo con decoración exclusiva</li>
+                    <li className={styles.featureItem}>🅿️ Parking subterráneo con vigilancia 24 horas</li>
                 </ul>
             </div>
 

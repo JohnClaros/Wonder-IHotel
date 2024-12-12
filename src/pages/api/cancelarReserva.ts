@@ -1,13 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
 
-const openDb = async () => {
-    return open({
-        filename: "./src/db/hotel.db",
-        driver: sqlite3.Database,
-    });
-};
+import { db } from "@/db";
+import { reservas } from "@/db/schema"; 
+import { and, eq } from "drizzle-orm";
+
 
 const cancelarReserva = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "DELETE") {
@@ -18,14 +14,24 @@ const cancelarReserva = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         try {
-            const db = await openDb();
 
-            const result = await db.run(
-                `DELETE FROM reservas WHERE habitacion_id = ? AND fecha_entrada = ? AND fecha_salida = ?`,
-                [habitacion_id, fecha_entrada, fecha_salida]
-            );
+            const habitacionIdInt = parseInt(habitacion_id.toString());
+            const fechaEntradaDate = new Date(fecha_entrada.toString()).toISOString().split("T")[0]; // YYYY-MM-DD
+            const fechaSalidaDate = new Date(fecha_salida.toString()).toISOString().split("T")[0]; // YYYY-MM-DD
 
-            if (result.changes === 0) {
+            const result = await db
+                .delete(reservas)
+                .where(
+                    and(
+                        eq(reservas.habitacion_id, habitacionIdInt),
+                        eq(reservas.fecha_entrada, fechaEntradaDate),
+                        eq(reservas.fecha_salida, fechaSalidaDate)
+                    )
+                )
+                .returning()
+                .execute();
+
+            if (result.length === 0) {
                 return res.status(404).json({ error: "No se encontró la reserva a cancelar." });
             }
 
