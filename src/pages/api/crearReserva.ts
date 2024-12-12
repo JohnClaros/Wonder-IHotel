@@ -37,6 +37,7 @@ const crearReserva = async (req: NextApiRequest, res: NextApiResponse) => {
                     fecha_registro: fechaRegistro,
                 })
             }
+            console.log(clientes)
 
             await db
                 .insert(reservas)
@@ -59,7 +60,7 @@ const crearReserva = async (req: NextApiRequest, res: NextApiResponse) => {
             res.status(200).json({ message: "Reserva creada con éxito" });
         } catch (error) {
             console.error("Error al procesar la reserva: ", error);
-            res.status(500).json({ error: "Error del servidor al crear la reserva. etoy en creareserva" });
+            res.status(500).json({ error: "Error del servidor al crear la reserva." });
         }
     } else {
         res.setHeader("Allow", ["POST"]);
