@@ -77,7 +77,7 @@ const DatosBancariosPage = () => {
           });
 
           if (response.ok) {
-            setSuccess("!Pago realizado correctamente. Reserva realizada con éxito¡");
+            setSuccess("¡Pago realizado correctamente. Reserva realizada con éxito!");
             setTimeout(() => { 
               setSuccess(null);
               router.push("/");

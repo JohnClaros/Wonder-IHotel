@@ -36,7 +36,7 @@ const Reseñas = () => {
             const result = await response.json();
 
             if (response.ok) {
-                setSuccess("!Muchas gracias por su reseña¡");
+                setSuccess("¡Muchas gracias por su reseña!");
                 setFormData({ nombre: "", mensaje: "", rating: ""});
                 setTimeout(() => setSuccess(null), 7000);
                 router.push("/resennas");
