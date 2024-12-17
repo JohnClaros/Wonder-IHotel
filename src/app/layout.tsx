@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -39,6 +40,7 @@ export default function RootLayout({
         {loading && <LoadingSpinner/>}
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
