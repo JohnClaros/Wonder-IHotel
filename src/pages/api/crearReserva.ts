@@ -23,9 +23,6 @@ const crearReserva = async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const fechaRegistro = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
 
-            const clienteExiste = await db.select().from(clientes).where(eq(clientes.dni, dni))
-
-            if ( !clienteExiste ) {
                 await db
                 .insert(clientes)
                 .values({
@@ -36,8 +33,6 @@ const crearReserva = async (req: NextApiRequest, res: NextApiResponse) => {
                     direccion: direccion || null,
                     fecha_registro: fechaRegistro,
                 })
-            }
-            console.log(clientes)
 
             await db
                 .insert(reservas)
